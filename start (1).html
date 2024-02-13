@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="game.html">
+    <link rel="stylesheet" href="css.css">
+
+</head>
+
+<body>
+
+    <h1 id="startTitle">Welcome to the Game!</h1>
+    <div id="inputInStart">
+
+        <input type="button" id="statrGame" value="Start" class="str">
+        <input type="text" id="name" placeholder="enter your name" class="str">
+        <button id="instractions" class="str" onclick="showCustomAlert()">instractions</button>
+
+    </div>
+
+
+
+    <div id="customAlert" class="modal">
+        <div class="modal-content">
+            <span id="customAlertText"></span>
+            <button id="customAlertCloseBtn" onclick="closeCustomAlert()">OK</button>
+        </div>
+
+
+        <script>
+            document.getElementById("statrGame").addEventListener("mouseover", change);
+            document.getElementById("statrGame").addEventListener("mouseout", changeToPrev);
+            document.getElementById("statrGame").addEventListener("click", startGame);
+
+            //בעת מעבר עכבר על כפתור ההתחלה ישתנה גודל הכתב
+            function change() {
+                document.querySelectorAll("input").forEach(function (input) {
+                    input.style.fontSize = "19px";
+                });
+            }
+            function changeToPrev() {
+                document.querySelectorAll("input").forEach(function (input) {
+                    input.style.fontSize = "28px";
+                });
+            }
+            //localStorageמעבר לעמוד המשחק ושמירת שם המשתמש ב
+            function startGame() {
+                var playerName = document.getElementById('name').value;
+                localStorage.setItem('playerName', playerName);
+                window.location.href = "game.html?level=";
+
+            }
+            //הצגת הוראות המשחק למשתמש
+            function showCustomAlert() {
+                document.getElementById("customAlertText").textContent = "Every time a different number flashes you must type the flashing number as fast as possible! Try to score as many wins as possible... good luck;)";
+                document.getElementById("customAlert").style.display = "flex";
+            }
+            function closeCustomAlert() {
+                document.getElementById("customAlert").style.display = "none";
+            }
+
+
+        </script>
+
+
+</body>
+
+</html>

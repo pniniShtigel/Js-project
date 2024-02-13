@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="inputDiv">
+        <h1>Lights Game ;)</h1>
+        <div id="inputDiv3">
+            <input type="button" value=7 id="a7">
+            <input type="button" value=8 id="a8">
+            <input type="button" value=9 id="a9">
+        </div>
+        <div id="inputDiv2">
+            <input type="button" value=4 id="a4">
+            <input type="button" value=5 id="a5">
+            <input type="button" value=6 id="a6">
+        </div>
+        <div id="inputDiv1">
+            <input type="button" value=1 id="a1">
+            <input type="button" value=2 id="a2">
+            <input type="button" value=3 id="a3">
+        </div>
+    </div>
+    <div id="h">
+        <div id="h1"></div>
+    </div>
+    <input type="button" value="easy" id=r1>
+    <input type="button" value="mid" id=r2>
+    <input type="button" value="hard" id=r3>
+    </div>
+    </div>
+    <script>
+        let answerNum, minute = 0, rand = 2, rand2 = 2, c = 0, mark = 0, second = 30, flag = false, randt = 3;
+        //הטימר
+        function printTime() {
+            document.getElementById("h1").innerHTML = minute + ":" + second;
+            if (minute < 0) {
+                clearInterval(p);
+                Cheack();
+                document.getElementById("h1").innerHTML = " ";
+            }
+            if (second == 0) {
+                minute--;
+                second = 60;
+            }
+            second--;
+        }
+        //רמות קושי
+        document.getElementById("h1").innerHTML = "";
+        document.querySelector("#r1").addEventListener("click", easy)
+        document.querySelector("#r2").addEventListener("click", mid)
+        document.querySelector("#r3").addEventListener("click", hard)
+        function easy() {
+            setInterval("paintInput()", 1800);
+            callTimer();
+        }
+        function mid() {
+            setInterval("paintInput()", 1500);
+            callTimer();
+        }
+        function hard() {
+            setInterval("paintInput()", 1800);
+            setInterval("paintInputHard()", 1800);
+            callTimer();
+        }
+        //קריאה לטיימר
+        function callTimer() {
+            document.querySelector("#r1").removeEventListener("click", easy)
+            document.querySelector("#r2").removeEventListener("click", mid)
+            document.querySelector("#r3").removeEventListener("click", hard)
+            printTime();
+            p = setInterval("printTime()", 800);
+        }
+        //צביעת המספרים באופן רנדומלי
+        function paintInput() {
+            document.getElementById("a" + rand).style.backgroundColor = "black";
+            rand = Math.floor(Math.random() * 9) + 1;
+            document.getElementById("a" + rand).style.backgroundColor = "hwb(344 11% 9%)";
+        }
+        //צביעה בשלב הקשה
+        function paintInputHard() {
+
+            document.getElementById("a" + randt).style.backgroundColor = "black";
+            randt = Math.floor(Math.random() * 9) + 1;
+            document.getElementById("a" + randt).style.backgroundColor = "hwb(344 11% 9%)";
+
+        }
+        var audioPlaying = false;
+        var errorSound = new Audio('wrong.mp3');
+        //בדיקת קלט מהמשתמש וצליל שגיאה במקרה של טעות
+        document.addEventListener("keydown", function (event) {
+            if (event.key.length === 1) {
+                if (event.key == rand || event.key == randt) {
+                    audioPlaying = false;
+                    mark += 10;
+                }
+                else {
+                    errorSound.play();
+                    audioPlaying = true;
+                    if (mark >= 10)
+                        mark -= 10;
+                }
+
+            }
+        })
+// בדיקת  הציון הנוכחי ו- 3 השיאים ושליחתם לעמוד האחרון
+        function Cheack() {
+            var playerName = localStorage.getItem('playerName');
+            var playerScore = mark;
+            var playerScores = localStorage.getItem(playerName);
+            if (playerScores) {
+                playerScores = JSON.parse(playerScores);
+            } else {
+                playerScores = [];
+            }
+            playerScores.push(playerScore);
+            playerScores.sort((a, b) => b - a);
+            playerScores = playerScores.slice(0, 3);
+            localStorage.setItem(playerName, JSON.stringify(playerScores));
+            window.location.href = "end.html?count=" + 'bravo ' + playerName + ' your mark is: ' + mark + ' your 3 max scores are: ' + playerScores.join(', ');
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,124 @@
+body {
+    font-family: 'Comic Sans MS';
+    background-image: url(background.jpg);
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#inputDiv {
+    text-align: center;
+}
+
+#r1,
+#r2,
+#r3 {
+    width: 130px;
+    height: 50px;
+    color: hwb(344 11% 9%);
+    border-radius: 15%;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: hwb(344 11% 9%);
+    text-shadow: 0 0 20px hwb(344 11% 9%);
+    font-size: 39px;
+    text-align: center;
+}
+#startTitle{
+    color: hwb(344 11% 9%);
+    text-shadow: 0 0 20px hwb(344 11% 9%);
+    font-size: 55px;
+    text-align: center;
+
+}
+
+.str {
+    background-color: black;
+    font-size: 20px;
+    color: hwb(344 11% 9%);
+    height: 50px;
+    padding: 15px;
+    text-align: center;
+    text-shadow: 0 0 20px hwb(344 11% 9%);
+    box-shadow: 0 0 20px hwb(344 11% 9%);
+    border-radius: 7%;
+    width: 500px;
+    margin: 20px;
+}
+
+button,
+input {
+    background-color: black;
+    font-size: 43px;
+    color: hwb(344 11% 9%);
+    text-shadow: 0 0 20px hwb(344 11% 9%);
+    box-shadow: 0 0 20px hwb(344 11% 9%);
+    border-radius: 47%;
+    width: 160px;
+    height: 160px;
+    margin-bottom: 3px;
+}
+
+#h1 {
+    font-size: 65px;
+    color: hwb(344 11% 9%);
+    margin-top: 0px;
+
+}
+
+#customAlertCloseBtn {
+    height: 50px;
+    width: 70px;
+    border-radius: 7%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 30;
+    top: 0;
+    width: 30%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: hwb(344 11% 9%);
+    font-size: xx-large;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+
+#inputInStart {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    margin: 100px;
+    text-align: center;
+}
+
+#pOfEnd {
+    font-size: 60px;
+    color: hwb(344 11% 9%);
+    text-align: center;
+
+}
